@@ -1,0 +1,34 @@
+public class MainActivity extends AppCompatActivity {
+
+    Button btnDangNHap, btnThoat;
+    EditText txtTenDangNhap, txtMatKhau;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        //tham chiếu
+        btnThoat = findViewById(R.id.btnThoat);
+        btnDangNHap = findViewById(R.id.btnDangNhap);
+        txtTenDangNhap = findViewById(R.id.txtTenDang);
+        txtMatKhau = findViewById(R.id.txtMatkhau);
+        btnThoat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                System.exit(1);
+            }
+        });
+        btnDangNHap.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String tendangnhap = txtTenDangNhap.getText().toString();
+                String matkhau = txtMatKhau.getText().toString();
+                if(tendangnhap.equals("Admin") && matkhau.equals("Password")){
+                    Intent intent = new Intent(MainActivity.this,Dukhach.class);
+                    startActivity(intent);
+                }else
+                {
+                    Toast.makeText(MainActivity.this, "Nhập sai tên hoặc mật khẩu", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
