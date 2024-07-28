@@ -1,0 +1,91 @@
+package com.example.a123;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.Toast;
+
+public class dang_ky extends AppCompatActivity {
+
+    CheckBox java,c ,android;
+    RadioGroup rg;
+    RadioButton nam,nu;
+    String gioitinh;
+    Button choose,exit,next;
+    String cThayTan,java1,android1;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_dang_ky);
+        java = findViewById(R.id.java);
+        c = findViewById(R.id.c);
+        android=findViewById(R.id.androi);
+        rg=findViewById(R.id.rg);
+        nam=findViewById(R.id.rbNam);
+        nu=findViewById(R.id.rbNu);
+        exit=findViewById(R.id.btnExit);
+        choose=findViewById(R.id.btnChoose);
+        next=findViewById(R.id.btnNext);
+        exit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                System.exit(1);
+            }
+        });
+
+        rg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                if(nam.isChecked()){
+                    gioitinh="Nam";
+                }else{
+                    gioitinh="Nu";
+                }
+            }
+        });
+        java.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                java1=java.getText().toString();
+            }
+        });
+
+        c.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                cThayTan=c.getText().toString();
+            }
+        });
+        android.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                android1=android.getText().toString();
+            }
+        });
+        choose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Kt(gioitinh,java1,cThayTan,android1);
+            }
+        });
+        next.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(dang_ky.this, hoa_qua.class);
+                startActivity(intent);
+            }
+        });
+    }
+
+    private void Kt(String gioitinh, String java, String cThayTan, String android) {
+        Toast.makeText(this,java+" "+cThayTan+" "+android+" "+gioitinh,Toast.LENGTH_SHORT).show();
+    }
+}

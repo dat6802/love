@@ -1,0 +1,69 @@
+public class Dukhach extends AppCompatActivity {
+
+    Button btnTroLai, btnChon, btnTiep;
+    EditText txtTen;
+    RadioButton rdNam, rdNu;
+    CheckBox ckXemPhim, ckNgheNhac,ckLuotWeb, ckMuaSam;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_dukhach);
+        //tham chiếu
+        btnChon = findViewById(R.id.btnChon);
+        btnTroLai = findViewById(R.id.btnTroLai);
+        btnTiep = findViewById(R.id.btnTiepList);
+        txtTen = findViewById(R.id.txtTen);
+        rdNam = findViewById(R.id.rdNam);
+        rdNu = findViewById(R.id.rdNu);
+        ckLuotWeb = findViewById(R.id.ckLuotweb);
+        ckXemPhim = findViewById(R.id.ckXemPhim);
+        ckNgheNhac = findViewById(R.id.ckNgheNhac);
+        ckMuaSam = findViewById(R.id.ckMuaSam);
+        btnTiep.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Dukhach.this, Khachhang.class);
+                startActivity(intent);
+            }
+        });
+        btnTroLai.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Dukhach.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
+        btnChon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String ten = txtTen.getText().toString();
+                String gioitinh = "";
+                if(rdNu.isChecked()){
+                    gioitinh = "Nữ";
+                }
+                if(rdNam.isChecked()){
+                    gioitinh = "Nam";
+                }
+                String sothich = "";
+                if(ckXemPhim.isChecked()){
+                    sothich += "Xem phim, ";
+                }
+                if(ckLuotWeb.isChecked()){
+                    sothich += "Lướt web, ";
+                }
+                if(ckNgheNhac.isChecked()){
+                    sothich += "Nghe nhạc, ";
+                }
+                if(ckMuaSam.isChecked()){
+                    sothich += "Mua sắm, ";
+                }
+                if(ten.isEmpty()||sothich.equals("")||gioitinh.equals("")){
+                    Toast.makeText(Dukhach.this, "Bạn chưa nhập đủ dữ liệu", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    Toast.makeText(Dukhach.this, "Bạn có:" +ten+", " + gioitinh+ ", " + sothich, Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
+}
