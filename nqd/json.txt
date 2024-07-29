@@ -1,0 +1,55 @@
+
+        String json_data= "[\n" +
+                "{\n" +
+                "\"ma\":\"sp1\",\n"+
+                "\"ten\":\"máy tính del 1103\",\n"+
+                "\"gia\":\"10.000.000\",\n"+
+                "\"loai\":\"máy tính\"\n"+
+                "},\n"+
+                "{\n" +
+                "\"ma\":\"sp2\",\n"+
+                "\"ten\":\"Diện thoại ip 15\",\n"+
+                "\"gia\":\"20.000.000\",\n"+
+                "\"loai\":\"điện thoại\"\n"+
+                "},\n"+
+                "{\n" +
+                "\"ma\":\"sp3\",\n"+
+                "\"ten\":\"máy tính bảng 11\",\n"+
+                "\"gia\":\"10.000.000\",\n"+
+                "\"loai\":\"máy tính bảng\"\n"+
+                "}\n"+
+
+                "]";
+
+        Button btnHienThi;
+        ListView jlst;
+        ArrayList<String> dssp = new ArrayList<>();
+        @Override
+        protected void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            setContentView(R.layout.activity_json);
+            btnHienThi = findViewById(R.id.btnHienThi);
+            jlst = findViewById(R.id.jlist);
+
+            btnHienThi.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    try {
+                        JSONArray array = new JSONArray(json_data);
+                        for (int i = 0; i < array.length(); i++) {
+                            JSONObject object = array.getJSONObject(i);
+                            String ma = object.getString("ma");
+                            String ten = object.getString("ten");
+                            String gia = object.getString("gia");
+                            String loai = object.getString("loai");
+                            String sp = ma+", " + ten+", " + gia + ", " + loai;
+                            dssp.add(sp);
+                        }
+                        ArrayAdapter<String> adapter = new ArrayAdapter<>(json.this, android.R.layout.simple_list_item_1,dssp);
+                        jlst.setAdapter(adapter);
+                    } catch (JSONException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+            });
+        }
