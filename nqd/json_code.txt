@@ -1,0 +1,24 @@
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <androidx.appcompat.widget.AppCompatButton
+        android:layout_width="180dp"
+        android:layout_height="40dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:text="hien thi"
+        android:textSize="25dp"
+        android:textAlignment="center"
+        android:id="@+id/btnHienThi">
+
+    </androidx.appcompat.widget.AppCompatButton>
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/jlist">
+
+    </ListView>
+</LinearLayout>

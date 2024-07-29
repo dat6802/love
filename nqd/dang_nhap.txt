@@ -1,0 +1,29 @@
+
+    EditText txttk,txtmk;
+    Button btnsignin,btnexit;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        txttk = findViewById(R.id.txtUser);
+        txtmk = findViewById(R.id.txtPass);
+        btnexit = findViewById(R.id.btnexit);
+        btnsignin = findViewById(R.id.btnsignin);
+        btnsignin.setOnClickListener(new View.OnClickListener() {
+            @Override
+
+            public void onClick(View view) {
+                String tk=txttk.getText().toString();
+                String mk=txtmk.getText().toString();
+                login(tk,mk);
+            }
+        });
+    }
+    private void login(String tk, String mk){
+        if (tk.equals("cnttk13hn") && mk.equals("cnttk13")){
+          Intent intent = new Intent(this,dang_ky.class);
+            startActivity(intent);
+        }else {
+            Toast.makeText(this,"Nhap lai",Toast.LENGTH_SHORT).show();
+        }
+    }
